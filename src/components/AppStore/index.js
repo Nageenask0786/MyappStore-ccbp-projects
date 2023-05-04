@@ -307,15 +307,15 @@ class AppStore extends Component {
     this.setState({searchInput: event.target.value})
   }
 
-  getFilteredApps = () => {
+  getFilteredApps = (searchResults) => {
     const {activeTabId} = this.state
-    const filteredApps = appsList.filter(each => each.category === activeTabId)
+    const filteredApps = searchResults.filter(each => each.category === activeTabId)
     return filteredApps
   }
 
   getSearchResults = () => {
     const {searchInput} = this.state
-    const results = appsList.map(each =>
+    const results = appsList.filter(each =>
       each.appName.toLowerCase().includes(searchInput.toLowerCase()),
     )
     return results
